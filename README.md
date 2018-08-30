@@ -1,6 +1,6 @@
-# node-js-getting-started
+# intro-to-js-and-chat-client
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+A chat client Node.js app using [Express 4](http://expressjs.com/) and [socket.io](https://socket.io/).
 
 This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
 
@@ -9,13 +9,12 @@ This application supports the [Getting Started with Node on Heroku](https://devc
 Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
 
 ```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
+$ git clone https://github.com/conspicuousClockwork/intro-to-js-and-chat-client.git
 $ npm install
 $ npm start
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Your app should now be running on [localhost:3000](http://localhost:3000/).
 
 ## Deploying to Heroku
 
