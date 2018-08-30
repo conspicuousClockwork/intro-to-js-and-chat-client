@@ -9,30 +9,43 @@
   <body>
   <div id="messages"></div> 
   <div>
-    <input class="form-control" id="input" placeholder="Send a message!"></input>
-    <button class="btn btn-primary" onclick="sendMessage(this)">Send</button>
+    <input class="form-control" id="input" placeholder="Send a message!"/>
+    <button class="btn btn-primary" onclick="sendMessage()">Send</button>
   <div>
   <script type="text/javascript">
+   //Create the variable `socket` to use later
    var socket;
-
-   function receiveMessage(message) {
-     var messages = document.getElementById('messages');
-     messages.innerHTML = messages.innerHTML + '<div class="list-group-item">' + message + '</div>';
-   }
-
-   function autorun()
-   {
+    
+   //This function runs once the page fully loads
+   function autorun() {
+    //Use the socket library referenced on line 6 to create a socket
     socket = io();
+    //Using the function `on` (which is part of the socket created earlier)
+    //If the socket receives a message from the server, call the receiveMessage function
+    //This only passes the name of `receiveMessage` instead of calling the function, so we are not using parentheses.
     socket.on('chat message', receiveMessage);
    }
 
+   //Declaring a function to call when we receive a message
+   //It takes the message as an argument
+   function receiveMessage(message) {
+     //Find the HTML element with an id of 'messages' and store it in a variable.
+     var messages = document.getElementById('messages');
+     //Then add more HTML containing the message received from the socket
+     messages.innerHTML = messages.innerHTML + '<div class="list-group-item">' + message + '</div>';
+   }
 
-
+   //Declaring a function to send a message
    function sendMessage() {
+     //Find the HTML element with an id of 'input' and store it in a variable.
      var input = document.getElementById('input');
+     //Then use the socket we created to send the value contained in the HTML element we assigned to `input`
      socket.emit('chat message', input.value);
+     //Resets the value in the HTML element contained in the variable `input`
      input.value = '';
    }
+   
+   //Boilerplate code to run the function `autorun` when the page loads.
    if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
    else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
    else window.onload = autorun;
